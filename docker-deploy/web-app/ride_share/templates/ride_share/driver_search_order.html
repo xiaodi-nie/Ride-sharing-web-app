@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+    {% block content %}
+        {%if message%}
+            <li>{{message}}</li>
+        {%else%}
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+            <h2>Available Ride Requests</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr><th></th><th>Address</th><th>Arrival Time</th><th>Number of Passengers</th><th>Passenger Note</th></tr>
+                </thead>
+                <tbody>
+                    {%for trip in trips%}
+                    <tr><td><input  class="btn btn-info" type="radio" value = {{trip.pk}} name="trip" id="#radio"></td><td>{{trip.address}}
+                    </td><td>{{trip.time}}</td><td>{{trip.curr_passenger}}</td><td>{{trip.note}}</td></tr>
+                    {%endfor%}
+
+                </tbody>
+            </table>
+            <div class="button-wrapper submit">
+                 <input class="btn btn-primary" type="submit" value="Confirm Order" />
+
+            </div>
+            </form>
+        {%endif%}
+
+    {% endblock %}

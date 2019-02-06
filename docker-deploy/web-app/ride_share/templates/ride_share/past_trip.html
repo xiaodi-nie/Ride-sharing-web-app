@@ -1,0 +1,56 @@
+{% extends '../base.html' %}
+    {% block content %}
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Past Trips Info</h2>
+        {%if message%}
+            <li>{{message}}</li>
+        {%else%}
+            <ul>
+                {%if trips%}
+                    {% for item in trips%}
+
+                            <li>Address: {{ item.0.address }} </li>
+                            <li>Arrive Time: {{ item.0.time }} </li>
+
+                            <li>Current Number of Passengers: {{ item.0.curr_passenger }} </li>
+
+                            <li>Completion Status:  {{ item.0.is_complete }} </li>
+                            <li>Shareable: {{item.0.is_shareable}}</li>
+                            <li>Driver First Name : {{ item.1.first_name }} </li>
+                            <li>Driver Last Name : {{ item.1.last_name }} </li>
+                            <li>Vehicle Type : {{ item.2.type }} </li>
+                            <li>Vehicle Plate Number : {{ item.2.plate_num }} </li>
+
+
+                    {%endfor%}
+                {%endif%}
+
+                {%if trips_share%}
+                    {% for item_share in trips_share%}
+
+                            <li>You are the sharer of this trip</li>
+                            <li>Address: {{ item_share.0.address }} </li>
+                            <li>Arrive Time: {{ item_share.0.time }} </li>
+
+                            <li>Current Number of Passengers: {{ item_share.0.curr_passenger }} </li>
+
+                            <li>Completion Status:  {{ item_share.0.is_complete }} </li>
+                            <li>Shareable: {{item_share.0.is_shareable}}</li>
+                            <li>Driver First Name : {{ item_share.1.first_name }} </li>
+                            <li>Driver Last Name : {{ item_share.1.last_name }} </li>
+                            <li>Vehicle Type : {{ item_share.2.type }} </li>
+                            <li>Vehicle Plate Number : {{ item_share.2.plate_num }} </li>
+
+
+                    {%endfor%}
+                {%endif%}
+
+
+
+
+
+            </ul>
+        {%endif%}
+    </form>
+        {% endblock %}

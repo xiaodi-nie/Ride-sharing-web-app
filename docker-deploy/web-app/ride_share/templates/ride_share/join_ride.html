@@ -1,0 +1,55 @@
+{% extends '../base.html' %}
+    {% block content %}
+        {%if message%}
+            <li>{{message}}</li>
+        {%else%}
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+            <h2>Available Ride Requests</h2>
+            {% for field in form %}
+            <div class="fieldWrapper">
+                <input class="btn btn-primary" type="submit" value="Join Ride" />
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+                 <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+            </div>
+            {% endfor %}
+            <table class="table table-striped">
+                <thead>
+                <tr><th></th><th>Address</th><th>Arrival Time</th><th>Number of Passengers</th><th>Passenger Note</th>
+                    <th>Number of Passengers</th></tr>
+                </thead>
+                <tbody>
+                    {%for trip in trip_list%}
+                    <tr><td><a class="btn btn-primary" href=" {% url 'ride_share:join_ride' user.id trip.id %}">Choose this Ride</a></td><td>{{trip.address}}
+                    </td><td>{{trip.time}}</td><td>{{trip.curr_passenger}}</td><td>{{trip.note}}</td><td>{{trip.curr_passenger}}</td></tr>
+                    {%endfor%}
+
+                </tbody>
+            </table>
+                <!--<script type="text/javascript">-->
+                    <!--function getValue(){-->
+
+                    <!--var radio=document.getElementsByName("trip");-->
+                    <!--for (i=0; i<radio.length; i++){-->
+                        <!--if(radio[i].checked){-->
+                            <!--alert(radio[i].value)-->
+                            <!--return radio[i].value;-->
+                            <!--}-->
+                        <!--}-->
+                    <!--}-->
+                    <!--$("#trip_id").val(getValue())-->
+
+
+                <!--</script>-->
+                <!--<input id="#trip_id"name="trip_id">-->
+            <div class="button-wrapper submit">
+
+
+            </div>
+            </form>
+        {%endif%}
+
+    {% endblock %}
