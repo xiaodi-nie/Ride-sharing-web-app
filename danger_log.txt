@@ -1,0 +1,8 @@
+1/25: We find that if we don’t design our database models in a clear way we would not have a good base to work on.
+      We built the register, login and logout module, and we found out that if the user use existing username and/or existing email to register, it would have conflict in the database.
+1/26: We added user register authentication and make sure that user would not use the existing user name and email to register.We also make sure that user would not use too short a password so that it can avoid having security issues for the user.
+1/28: We make sure that if a user have a incomplete trip, he/she can not join a new trip in any way(as owner, driver or sharer).
+1/31: We make sure that if a trip is confirmed by a driver, the owner can not edit the request.
+2/2:  We make sure that if a user has not register as a driver, he/she can not see the tab for searching for open ride to confirm as driver.
+2/3:  We make sure that only if a user is the current trip's driver, can he/she see the "complete trip" button after clicking on the "current trip" tab.
+2/5:  We find that the user can not review his/her past confirmed trips, so we updated our system and added that function.
